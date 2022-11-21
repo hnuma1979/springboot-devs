@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration 
+    PUBLIC 
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" 
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" 
+>
+<generatorConfiguration >
+    <context id="spring" >
+        <!-- 楽観的ロックを行うためのプラグイン -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.OptimisticLockerPlugin">
+            <property name="customizedNextVersion" value="false"/>
+        </plugin>
+
+        <!-- エンティティクラスでLombokを使用するためのプラグイン -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.LombokPlugin">
+            <property name="@Data" value="true"/>
+            <property name="@Builder" value="false"/>
+            <property name="@ToString" value="true"/>
+            <property name="@AllArgsConstructor" value="true"/>
+            <property name="@NoArgsConstructor" value="true"/>
+            <property name="@Accessors(chain = true)" value="false"/>
+            <property name="supportSuperBuilderForIdea" value="false"/>
+        </plugin>
+
+        <!-- マッパクラスのアノテーションを制御するためのプラグイン -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.MapperAnnotationPlugin">
+            <property name="@Mapper" value="true"/>
+            <property name="@Repository" value="true"/>
+        </plugin>
+
+        <!-- マッパxmlファイルを生成時に上書きするためのプラグイン -->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>
+
+        <!-- ページングを行うためのプラグイン -->
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+        
+        <!-- 生成される Java ファイルのコメントに日付を付与しない -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 生成元となるDBへの接続情報 -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/spring"
+                        userId="spring" password="spring"/>
+
+        <!-- MyBatis Generatorの設定 -->
+        <javaTypeResolver>
+            <property name="useJSR310Types" value="true"/>
+        </javaTypeResolver>
+
+        <!-- 出力設定-->
+        <javaModelGenerator     targetPackage="jp.mirageworld.spring.common.model"  targetProject="src/main/java"/>
+        <sqlMapGenerator        targetPackage="jp.mirageworld.spring.common.model"  targetProject="src/main/resources"/>
+        <javaClientGenerator    targetPackage="jp.mirageworld.spring.common.mapper" targetProject="src/main/java"
+                                type="ANNOTATEDMAPPER"/>
+       
+        <!-- 生成対象とするテーブルを記述する -->
+        <table tableName="users" >   
+            <property name="versionColumn" value="updated"/>
+            <columnOverride column="locked"  javaType="boolean" />
+            <columnOverride column="enabled" javaType="boolean" />
+        </table>
+    </context>
+</generatorConfiguration>
