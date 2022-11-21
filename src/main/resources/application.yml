@@ -12,3 +12,7 @@ spring:
         useSSL:         false
   flyway:
     fail-on-missing-locations: true
+
+logging:
+  level:
+    '[jp.mirageworld.spring]': trace

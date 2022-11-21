@@ -1,0 +1,4 @@
+
+logging:
+  level:
+    '[jp.mirageworld.spring]': trace
