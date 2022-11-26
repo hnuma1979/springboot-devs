@@ -41,3 +41,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# 認証キー、パスワードなど漏れてはいけないものを本設定する
+application-env.yml

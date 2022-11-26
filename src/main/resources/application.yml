@@ -15,7 +15,30 @@ spring:
     fail-on-missing-locations: true
   messages:
     encoding: UTF-8
+  mail:
+    default-encoding: UTF-8
+    protocol:         smtp
+    host:             smtp.sendgrid.com
+    port:             465
+    username:         "apikey"
+    password:         ""                      # application-env.yml で設定してください
+    properties:
+      '[mail.smtp.auth]'              : true  # 認証必須
+      '[mail.smtp.ssl.enable]'        : true  # SSL 使用
+  profiles:
+    default: default
+    include:
+    - env
 
 logging:
   level:
     '[jp.mirageworld.spring]': trace
+
+################
+# app   #
+################
+app:
+  mail:
+    from: "example@example.com" # FROM アドレス
+    send: false
+
