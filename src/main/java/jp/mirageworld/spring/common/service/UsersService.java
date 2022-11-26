@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -24,6 +25,9 @@ public class UsersService {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    MessageService messageService;
 
     @Autowired
     UsersMapper usersMapper;
@@ -83,9 +87,9 @@ public class UsersService {
         log.debug("insert(users) : START");
         try {
             // ユーザー名は重複してはいけない
-            existsUsernameThrow(users.getUsername(), null, "errors.username.exists");
+            existsUsernameThrow(users.getUsername(), null, messageService.getMessage("errors.username.exists"));
             // メールアドレスは重複してはいけない
-            existsEmailThrow(users.getEmail(), null, "errors.email.exists");
+            existsEmailThrow(users.getEmail(), null, messageService.getMessage("errors.email.exists"));
 
             Users insertUser = new Users();
             BeanUtils.copyProperties(users, insertUser);
@@ -115,9 +119,9 @@ public class UsersService {
         log.debug("update(user) : START");
         try {
             // ユーザー名は重複してはいけない
-            existsUsernameThrow(users.getUsername(),    users.getId(), "errors.username.exists");
+            existsUsernameThrow(users.getUsername(),    users.getId(), messageService.getMessage("errors.username.exists"));
             // メールアドレスは重複してはいけない
-            existsEmailThrow(users.getEmail(),          users.getId(), "errors.email.exists");
+            existsEmailThrow(users.getEmail(),          users.getId(), messageService.getMessage("errors.email.exists"));
 
             Users databaseUser = findById(users.getId()).get();
             Users updateUser = new Users();

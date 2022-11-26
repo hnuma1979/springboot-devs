@@ -5,6 +5,12 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+### バックアップ ###
+*.bak
+*.org
+*.old
+*~
+
 ### STS ###
 .apt_generated
 .classpath

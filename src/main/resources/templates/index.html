@@ -28,7 +28,7 @@
                         <li class="nav-item"><a id="nav-link-home"  class="nav-link active" aria-current="page" href="#" th:href="@{/}"        th:text="#{nav.home.link}">Home</a></li>
                         <li class="nav-item"><a id="nav-link-users" class="nav-link"        aria-current="page" href="#" th:href="@{/profile}" th:text="#{nav.user.link}">User</a></li>
                     </ul>
-                    <form class="d-flex" th:action="@{/login}">
+                    <form class="d-flex" th:action="@{/login}" id="nav-login-form">
                         <button class="btn btn-success" type="submit" th:text="#{nav.login.link}">Login</button>
                     </form>
                 </div>

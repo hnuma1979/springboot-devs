@@ -13,6 +13,8 @@ spring:
         allowPublicKeyRetrieval:  true
   flyway:
     fail-on-missing-locations: true
+  messages:
+    encoding: UTF-8
 
 logging:
   level:
