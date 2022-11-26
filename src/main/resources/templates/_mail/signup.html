@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html 
+     xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+    <head>
+        <meta charset="utf-8" >
+    </head>
+    <body>
+        <main>
+            <div>USERNAME :<span th:text="${users.username}">username</span></div>
+            <div>EMAIL    :<span th:text="${users.email}"   >email</span></div>
+        </main>
+    </body>
+</html>

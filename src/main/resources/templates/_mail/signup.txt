@@ -1,0 +1,3 @@
+
+USERNAME: [ $(users.username)]
+EMAIL   : [ $(users.email)]
