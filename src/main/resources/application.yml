@@ -9,7 +9,8 @@ spring:
     hikari:
       auto-commit: false
       data-source-properties:
-        useSSL:         false
+        useSSL:                   false
+        allowPublicKeyRetrieval:  true
   flyway:
     fail-on-missing-locations: true
 
