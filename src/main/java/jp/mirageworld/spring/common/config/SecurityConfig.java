@@ -22,16 +22,6 @@ public class SecurityConfig {
     }
  
     @Bean
-    public MapReactiveUserDetailsService userDetailsService() {
-         UserDetails user = User.withDefaultPasswordEncoder()
-              .username("user")
-              .password("password")
-              .roles("USER")
-              .build();
-         return new MapReactiveUserDetailsService(user);
-    }
-
-    @Bean
     protected SecurityWebFilterChain  httpSecurity(ServerHttpSecurity http) throws Exception {
         log.debug("httpSecurity(http) : START");
         try {
